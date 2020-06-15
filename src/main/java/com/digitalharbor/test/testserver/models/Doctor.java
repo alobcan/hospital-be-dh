@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "pacientes")
-public class Paciente {
+@Table(name = "doctores")
+public class Doctor {
 
     @Id
     @Column
@@ -30,5 +30,4 @@ public class Paciente {
 
     @Column
     private String direccion;
-
 }
