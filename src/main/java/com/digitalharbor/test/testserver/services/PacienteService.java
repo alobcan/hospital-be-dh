@@ -2,6 +2,7 @@ package com.digitalharbor.test.testserver.services;
 
 import java.util.List;
 
+import com.digitalharbor.test.testserver.models.Historial;
 import com.digitalharbor.test.testserver.models.Paciente;
 import com.digitalharbor.test.testserver.repositories.PacienteRepositorio;
 
@@ -15,6 +16,13 @@ public class PacienteService {
 
     public List<Paciente> listar() {
         return repositorio.findAll();
+    }
+
+    public Paciente addHistorial(Historial p, int id){
+        Paciente q = repositorio.findById(id);
+        p.setId_paciente(q);
+        q.getHistoriales().add(p);
+        return repositorio.save(q);
     }
 
     public Paciente add(Paciente p) {
