@@ -3,16 +3,38 @@ package com.digitalharbor.test.testserver.services;
 import java.util.List;
 
 import com.digitalharbor.test.testserver.models.Doctor;
+import com.digitalharbor.test.testserver.repositories.DoctorRepositorio;
 
-public interface DoctorService {
-    List<Doctor> listar();
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    Doctor listarId(int id);
+@Service
+public class DoctorService {
+    @Autowired
+    private DoctorRepositorio repositorio;
 
-    Doctor add(Doctor p);
+    public List<Doctor> listar() {
+        return repositorio.findAll();
+    }
 
-    Doctor edit(Doctor p);
+    public Doctor listarId(int id) {
+        return repositorio.findById(id);
+    }
 
-    Doctor delete(int id);
+    public Doctor add(Doctor p) {
+        return repositorio.save(p);
+    }
 
+    public Doctor edit(Doctor p) {
+        return repositorio.save(p);
+    }
+
+    public Doctor delete(int id) {
+        Doctor p = repositorio.findById(id);
+        if(p!=null){
+            repositorio.delete(p);
+        }
+        return p;
+    }
+    
 }
