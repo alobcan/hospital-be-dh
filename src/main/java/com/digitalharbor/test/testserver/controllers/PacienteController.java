@@ -41,7 +41,7 @@ public class PacienteController {
 
     @PutMapping(path = { "/{id}" })
     public Paciente editar(@RequestBody Paciente p, @PathVariable("id") int id) {
-        p.setId(id);
+        p.setId_paciente(id);
         return service.edit(p);
     }
 

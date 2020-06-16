@@ -16,7 +16,7 @@ public class Paciente {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_paciente;
 
     @Column
     private String nombre;
