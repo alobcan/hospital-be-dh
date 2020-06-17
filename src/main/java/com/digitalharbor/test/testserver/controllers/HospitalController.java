@@ -2,8 +2,9 @@ package com.digitalharbor.test.testserver.controllers;
 
 import java.util.List;
 
-import com.digitalharbor.test.testserver.models.Historial;
-import com.digitalharbor.test.testserver.services.HistorialService;
+import com.digitalharbor.test.testserver.models.Hospital;
+import com.digitalharbor.test.testserver.models.Paciente;
+import com.digitalharbor.test.testserver.services.HospitalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,35 +20,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping({ "/historiales" })
-public class HistorialController {
+@RequestMapping({ "/hospitales" })
+public class HospitalController {
     @Autowired
-    private HistorialService service;
+    private HospitalService service;
 
     @GetMapping
-    public List<Historial> listar() {
+    public List<Hospital> listar() {
         return service.listar();
     }
 
     @PostMapping
-    public ResponseEntity<Historial> agregar(@RequestBody Historial p) {
+    public ResponseEntity<Hospital> agregar(@RequestBody Hospital p) {
         return ResponseEntity.ok(service.add(p));
     }
 
+    @PostMapping(path = { "/{id}" })
+    public Hospital agregarPaciente(@RequestBody Paciente p, @PathVariable("id") int id) {
+        return service.addPaciente(p, id);
+    }
+
     @GetMapping(path = { "/{id}" })
-    public Historial listarId(@PathVariable("id") int id) {
+    public Hospital listarId(@PathVariable("id") int id) {
         return service.listarId(id);
     }
 
     @PutMapping(path = { "/{id}" })
-    public Historial editar(@RequestBody Historial p, @PathVariable("id") int id) {
-        p.setId_historial(id);
-        return service.edit(p, id);
+    public Hospital editar(@RequestBody Hospital p, @PathVariable("id") int id) {
+        p.setId_hospital(id);
+        return service.edit(p);
     }
 
     @DeleteMapping(path = { "/{id}" })
-    public Historial delete(@PathVariable("id") int id) {
+    public Hospital delete(@PathVariable("id") int id) {
         return service.delete(id);
     }
-    
 }

@@ -2,7 +2,6 @@ package com.digitalharbor.test.testserver.controllers;
 
 import java.util.List;
 
-import com.digitalharbor.test.testserver.models.Historial;
 import com.digitalharbor.test.testserver.models.Paciente;
 import com.digitalharbor.test.testserver.services.PacienteService;
 
@@ -35,11 +34,6 @@ public class PacienteController {
         return ResponseEntity.ok(service.add(p));
     }
 
-    @PostMapping(path = {"/{id}"})
-    public Paciente agregarHistorial(@RequestBody Historial p, @PathVariable("id") int id){
-        return service.addHistorial(p, id); 
-    }
-
     @GetMapping(path = { "/{id}" })
     public Paciente listarId(@PathVariable("id") int id) {
         return service.listarId(id);
@@ -48,7 +42,7 @@ public class PacienteController {
     @PutMapping(path = { "/{id}" })
     public Paciente editar(@RequestBody Paciente p, @PathVariable("id") int id) {
         p.setId_paciente(id);
-        return service.edit(p);
+        return service.edit(p,id);
     }
 
     @DeleteMapping(path = { "/{id}" })

@@ -2,9 +2,10 @@ package com.digitalharbor.test.testserver.services;
 
 import java.util.List;
 
-import com.digitalharbor.test.testserver.models.Doctor;
 import com.digitalharbor.test.testserver.models.Especialidad;
+import com.digitalharbor.test.testserver.models.Hospital;
 import com.digitalharbor.test.testserver.repositories.EspecialidadRepositorio;
+import com.digitalharbor.test.testserver.repositories.HospitalRepositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +14,22 @@ import org.springframework.stereotype.Service;
 public class EspecialidadService {
     @Autowired
     private EspecialidadRepositorio repositorio;
+    @Autowired
+    private HospitalRepositorio rep;
 
     public List<Especialidad> listar(){
         return repositorio.findAll();
     }
 
-    public Especialidad addDoctor(Doctor p, int id){
-        Especialidad q = repositorio.findById(id);
-        p.setEspecialidad(q);
-        q.getDoctores().add(p);
-        return repositorio.save(q);
-    }
-
     public Especialidad add(Especialidad p) {
+        Hospital hospital = rep.findById(p.getId_ref());
+        p.setHospital(hospital);
         return repositorio.save(p);
     }
 
-    public Especialidad edit(Especialidad p) {
+    public Especialidad edit(Especialidad p, int id) {
+        Especialidad especialidad = repositorio.findById(id);
+        p.setHospital(especialidad.getHospital());
         return repositorio.save(p);
     }
 

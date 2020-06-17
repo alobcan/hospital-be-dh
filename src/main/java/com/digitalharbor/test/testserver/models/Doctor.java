@@ -32,6 +32,9 @@ public class Doctor {
     @Column
     private String direccion;
 
+    @Column 
+    private int id_ref;
+
     @JsonBackReference
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "id_especialidad", insertable = true)

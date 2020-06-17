@@ -25,6 +25,9 @@ public class Historial {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
+    @Column
+    private int id_ref;
+
 
     @JsonBackReference
     @ManyToOne (fetch = FetchType.LAZY)

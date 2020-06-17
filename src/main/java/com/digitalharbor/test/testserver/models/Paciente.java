@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -34,9 +35,18 @@ public class Paciente {
     @Column
     private String direccion;
 
+    @Column
+    private int id_ref;
+
+
     @JsonManagedReference
     @OneToMany(mappedBy = "id_paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Historial> historiales=new ArrayList<>();
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hospital", insertable = true)
+    private Hospital hospital;
 
     public void clearHistoriales(){
         this.historiales.clear();

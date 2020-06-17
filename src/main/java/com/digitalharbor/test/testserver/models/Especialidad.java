@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -22,8 +23,17 @@ public class Especialidad {
 
     @Column
     private String descripcion;
+    
+    @Column
+    private int id_ref;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Doctor> doctores;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hospital", insertable = true)
+    private Hospital hospital;
+
 }
