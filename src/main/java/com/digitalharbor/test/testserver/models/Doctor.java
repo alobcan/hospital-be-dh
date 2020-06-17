@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -30,4 +31,9 @@ public class Doctor {
 
     @Column
     private String direccion;
+
+    @JsonBackReference
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_especialidad", insertable = true)
+    private Especialidad especialidad;
 }
