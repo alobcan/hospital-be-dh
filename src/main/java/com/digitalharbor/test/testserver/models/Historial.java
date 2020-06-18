@@ -9,10 +9,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "historiales")
-public class Historial {
+public class Historial extends Auditoria {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

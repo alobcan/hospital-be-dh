@@ -12,10 +12,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "pacientes")
-public class Paciente {
+public class Paciente extends Auditoria {
 
     @Id
     @Column
