@@ -9,10 +9,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "especialidades")
-public class Especialidad {
+public class Especialidad extends Auditoria {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

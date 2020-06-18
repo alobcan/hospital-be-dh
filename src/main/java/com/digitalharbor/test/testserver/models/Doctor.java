@@ -9,10 +9,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "doctores")
-public class Doctor {
+public class Doctor extends Auditoria {
 
     @Id
     @Column
