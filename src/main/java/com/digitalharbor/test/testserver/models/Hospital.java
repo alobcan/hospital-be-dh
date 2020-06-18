@@ -8,10 +8,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "hospitales")
-public class Hospital {
+public class Hospital extends Auditoria {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
